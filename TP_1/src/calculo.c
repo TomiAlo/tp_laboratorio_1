@@ -30,7 +30,7 @@ float precioCreditoA;
 precioCreditoA=precioAerolineas+(precioAerolineas*25)/100;
 
 float precioBTCA;
-precioBTCA=precioAerolineas/4606954.55;
+precioBTCA=precioAerolineas/4886492.54;
 
 float precioUnitarioA;
 precioUnitarioA=precioAerolineas/kilometros;
@@ -42,7 +42,7 @@ float precioCreditoL;
 precioCreditoL=precioLatam+(precioLatam*25)/100;
 
 float precioBTCL;
-precioBTCL=precioLatam/4606954.55;
+precioBTCL=precioLatam/4886492.54;
 
 float precioUnitarioL;
 precioUnitarioL=precioLatam/kilometros;

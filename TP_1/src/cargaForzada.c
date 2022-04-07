@@ -7,21 +7,52 @@
 void cargaForzada(void)
 {
 int kilometros=7090;
-int precioAerolineas=162965;
-int precioLatam=159339;
+float precioAerolineas=162965;
+float precioLatam=159339;
 
-printf("KMs Ingresados: %d"
+float precioDebitoA;
+precioDebitoA=precioAerolineas-(precioAerolineas*10)/100;
 
-		"\n\nLatam: $%d"
-		"\na) Precio con tarjeta de débito: $143405.1"
-		"\nb) Precio con tarjeta de crédito: $199173.75"
-		"\nc) Precio pagando con bitcoin : 0.03458 BTC"
-		"\nd) Precio unitario: $22.47"
-		"\n\nAerolíneas: $%d"
-		"\na) Precio con tarjeta de débito: $146668.5"
-		"\nb) Precio con tarjeta de crédito: $203706.25"
-		"\nc) Precio pagando con bitcoin : 0.03537 BTC"
-		"\nd) Precio unitario: $22.98"
+float precioCreditoA;
+precioCreditoA=precioAerolineas+(precioAerolineas*25)/100;
 
-		"\n\nLa diferencia de precio es : $3626",kilometros,precioLatam,precioAerolineas);
+float precioBTCA;
+precioBTCA=precioAerolineas/4886492.54;
+
+float precioUnitarioA;
+precioUnitarioA=precioAerolineas/kilometros;
+
+float precioDebitoL;
+precioDebitoL=precioLatam-(precioLatam*10)/100;
+
+float precioCreditoL;
+precioCreditoL=precioLatam+(precioLatam*25)/100;
+
+float precioBTCL;
+precioBTCL=precioLatam/4886492.54;
+
+float precioUnitarioL;
+precioUnitarioL=precioLatam/kilometros;
+
+float diferencia;
+diferencia=precioAerolineas-precioLatam;
+
+
+printf("KMs Ingresados: %d",kilometros);
+
+printf("\n\nAerolíneas: $%.2f"
+		"\na) Precio con tarjeta de débito: $%.2f"
+		"\nb) Precio con tarjeta de crédito: $%.2f"
+		"\nc) Precio pagando con bitcoin : %.4f BTC"
+		"\nd) Precio unitario: $%.2f",precioAerolineas,precioDebitoA,precioCreditoA,precioBTCA,precioUnitarioA);
+
+printf("\n\nLatam: $%.2f"
+		"\na) Precio con tarjeta de débito: $%.2f"
+		"\nb) Precio con tarjeta de crédito: $%.2f"
+		"\nc) Precio pagando con bitcoin : %.4f BTC"
+		"\nd) Precio unitario: $%.2f",precioLatam,precioDebitoL,precioCreditoL,precioBTCL,precioUnitarioL);
+
+printf("\n\nLa diferencia de precio es : $%.2f",diferencia);
+
 }
+
