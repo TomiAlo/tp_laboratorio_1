@@ -52,10 +52,10 @@ setbuf(stdout, NULL);
 
 int opcion;
 
-printf("1)Calcular costos "
+printf("Que opcion desea realizar:  "
+"\n\n1)Calcular costos"
 "\n2)Carga forzada de datos"
-"\n3)salir"
-"\n\nQue opcion desea realizar: ");
+"\n3)salir\n");
 scanf("%d",&opcion);
 
 if(opcion==1)

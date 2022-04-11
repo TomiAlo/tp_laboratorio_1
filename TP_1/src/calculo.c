@@ -10,6 +10,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * brief: la funcion pide los precios y realiza los calculos
+ * correspondientes
+ * @param kilometros
+ * return: nada(void)
+ */
+
 void calculo(int kilometros)
 {
 float precioAerolineas;
