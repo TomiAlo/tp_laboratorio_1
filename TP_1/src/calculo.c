@@ -25,9 +25,21 @@ float precioLatam;
 printf("ingrese el precio en Aerolineas: ");
 scanf("%f",&precioAerolineas);
 
+while(precioAerolineas<=0)
+{
+	printf("error, ingrese el precio en Aerolineas: ");
+	scanf("%f",&precioAerolineas);
+}
+
+
 printf("ingrese el precio en Latam: ");
 scanf("%f",&precioLatam);
 
+while(precioLatam<=0)
+{
+	printf("error, ingrese el precio en Latam: ");
+	scanf("%f",&precioLatam);
+}
 //A: Aerolineas   ||  L: Latam
 
 float precioDebitoA;
