@@ -14,6 +14,7 @@ int main(void) {
 setbuf(stdout, NULL);
 
 int opcion;
+int kilometros;
 
 printf("Que opcion desea realizar:  "
 "\n\n1)Calcular costos"
@@ -21,40 +22,32 @@ printf("Que opcion desea realizar:  "
 "\n3)salir\n");
 scanf("%d",&opcion);
 
-if(opcion==1)
+switch(opcion)
 {
-int kilometros;
+case 1:
+	printf("ingrese la cantidad de kilometros: ");
+	scanf("%d",&kilometros);
 
-printf("ingrese la cantidad de kilometros: ");
-scanf("%d",&kilometros);
+	while(kilometros<=0)
+	{
+	printf("Error, numero no valido ");
+	scanf("%d",&kilometros);
+	}
 
-while(kilometros<=0)
-{
-printf("Error, numero no valido ");
-scanf("%d",&kilometros);
-}
+	calculo(kilometros);
 
-calculo(kilometros);
+	break;
 
-}
-
-
-else if(opcion==2)
-{
+case 2:
 	cargaForzada();
-}
+	break;
 
-
-else if(opcion==3)
-{
+case 3:
 	return 0;
-}
+	break;
 
-
-else
-{
+default:
 	printf("error, numero no valido");
+	break;
 }
-
-return 0;
 }

@@ -42,7 +42,7 @@ float diferencia;
 diferencia=precioAerolineas-precioLatam;
 
 
-printf("KMs Ingresados: %d",kilometros);
+printf("\nKMs Ingresados: %d",kilometros);
 
 printf("\n\nAerolíneas: $%.2f"
 		"\na) Precio con tarjeta de débito: $%.2f"
