@@ -2,11 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
- * brief: la funcion carga los datos hardcodeados
- * param: no tiene
- * return: nada
- */
 
 void cargaForzada(void)
 {
