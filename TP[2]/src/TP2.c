@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "arrayPassengers.h"
 
-#define PASAJEROS 3
+#define PASAJEROS 2000
 
 int main(void) {
 	setbuf(stdout, NULL);
