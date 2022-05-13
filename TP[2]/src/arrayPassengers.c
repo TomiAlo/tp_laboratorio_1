@@ -1,4 +1,12 @@
 /*
+ * arrayPassengers.c
+ *
+ *  Created on: 12 may. 2022
+ *      Author: Usuario
+ */
+
+
+/*
  * source.c
  *
  *  Created on: 7 may. 2022
@@ -372,18 +380,18 @@ int removePassenger(Passenger* list, int len, int id){
 
 	int retorno=-1;
 
-	if(list!=NULL && len>0){
+	if(list!=NULL && len>0 && id<=len){
 
-			if(list[id].isEmpty==1){
-				list[id].isEmpty=0;
-				printf("Eliminado correctamente");
-				retorno=0;
-			}
-			else if(list[id].isEmpty==0){
-				printf("En este id no hay registrado ningun pasajero");
-				retorno=-1;
-			}
+		if(list[id].isEmpty==1){
+			list[id].isEmpty=0;
+			printf("Eliminado correctamente");
+			retorno=0;
 		}
+		else if(list[id].isEmpty==0){
+			printf("En este id no hay registrado ningun pasajero");
+			retorno=-1;
+		}
+	}
 	return retorno;
 }
 
@@ -437,7 +445,7 @@ int sortPassengers(Passenger* list, int len, int order){
 				}
 				printf("\nlista de pasajeros ordenada por apellido de manera ascendente: \n");
 				for(i=0;i<len;i++){
-					if(list[i].typePassenger!=0){
+					if(list[i].typePassenger!=0  && list[i].isEmpty!=0){
 						printf("apellido: %s, tipo de pasajero: %d\n",auxiliarLastName[i], auxiliarType[i]);
 					}
 				}
@@ -460,7 +468,7 @@ int sortPassengers(Passenger* list, int len, int order){
 				}
 				printf("\nlista de pasajeros ordenada por apellido de manera descendente: \n");
 				for(i=0;i<len;i++){
-					if(list[i].typePassenger!=0){
+					if(list[i].typePassenger!=0  && list[i].isEmpty!=0){
 						printf("apellido: %s, tipo de pasajero: %d\n",auxiliarLastName[i], auxiliarType[i]);
 					}
 				}
@@ -522,7 +530,7 @@ int sortPassengersByCode(Passenger* list, int len, int order){
 	if(list!=NULL && len>0){
 
 		for(k=0; k<len; k++){
-			if(list[k].isEmpty!=0){
+			if(list[k].isEmpty!=0 && list[k].statusFlight==1){
 				flag=1;
 			}
 			if(flag==0){
@@ -532,10 +540,9 @@ int sortPassengersByCode(Passenger* list, int len, int order){
 		}
 
 		for(i=0;i<len;i++){
-			if(list[i].statusFlight!=0){
+			if(list[i].statusFlight==1){
 				strcpy(auxiliarCode[i],list[i].flycode);
 				auxiliarStatus[i]=list[i].statusFlight;
-				printf("%s",auxiliarCode[i]);
 			}
 		}
 
@@ -556,7 +563,7 @@ int sortPassengersByCode(Passenger* list, int len, int order){
 				}
 				printf("\nlista de pasajeros ordenada por codigo de vuelo de manera ascendente: \n");
 				for(i=0;i<len;i++){
-					if(list[i].statusFlight!=0){
+					if(list[i].statusFlight==1 && list[i].isEmpty!=0){
 						printf("codigo de vuelo: %s, estado de vuelo: %d\n",auxiliarCode[i], auxiliarStatus[i]);
 					}
 				}
@@ -577,7 +584,7 @@ int sortPassengersByCode(Passenger* list, int len, int order){
 				}
 					printf("\nlista de pasajeros ordenada por codigo de vuelo de manera descendente: \n");
 					for(i=0;i<len;i++){
-						if(list[i].statusFlight!=0){
+						if(list[i].statusFlight==1 && list[i].isEmpty!=0){
 							printf("codigo de vuelo: %s, estado de vuelo: %d\n",auxiliarCode[i], auxiliarStatus[i]);
 						}
 					}
@@ -608,3 +615,121 @@ void altaForzada(Passenger* list, int len , int i){
 	}
 }
 
+int ModifyPassenger(Passenger* list, int len , int opcion, int id){
+
+	int retorno=-1;
+	int flagName;
+	int flagLastName;
+	int validacionPrecio;
+	int validacionTipo;
+	int flagType;
+	int i;
+	char auxiliar;
+
+	switch(opcion){
+	case 1:
+		do{
+			printf("ingrese nuevo nombre: ");
+			myGets(list[id].name, ELEMENTS);
+			flagName=0;
+			for(i=0; i<strlen(list[id].name);i++){
+					if(!(isalpha(list[id].name[i]))){
+						printf("error al ingresar nombre\n");
+						flagName=0;
+						break;
+					}
+					else{
+						flagName=1;
+					}
+				}
+
+		}while(flagName==0);
+		break;
+
+	case 2:
+		do{
+			printf("ingrese nuevo apellido: ");
+			myGets(list[id].lastName, ELEMENTS);
+			flagLastName=0;
+			for(i=0; i<strlen(list[id].lastName);i++){
+					if(!(isalpha(list[id].lastName[i]))){
+						printf("error al ingresar apellido\n");
+						flagLastName=0;
+						break;
+					}
+					else{
+						auxiliar=tolower(list[id].lastName[i]);
+						list[id].lastName[i]=auxiliar;
+						flagLastName=1;
+					}
+				}
+
+		}while(flagLastName==0);
+		break;
+
+	case 3:
+		do{
+			validacionPrecio=utn_getNumeroFlotante(&list[id].price,"ingrese nuevo precio: ","error ",2);
+		}while(validacionPrecio!=0);
+		break;
+
+	case 4:
+		do{
+			validacionTipo=utn_getNumeroEntero(&list[id].typePassenger,"ingrese nuevo tipo de pasajero: 1-CLASE ECONOMICA O 2-EJECUTIVO O 3-PRIMERA CLASE: ","error ",1,3,2);
+		}while(validacionTipo!=0);
+		break;
+
+	case 5:
+		do{
+			printf("ingrese nuevo codigo de vuelo: ");
+			myGets(list[id].flycode, FLYCODE_MAX);
+			flagType=0;
+			for(i=0; i<strlen(list[id].flycode);i++){
+					if(!(isalpha(list[id].flycode[i]))){
+						printf("error al ingresar codigo de vuelo\n");
+						flagType=0;
+						break;
+					}
+					else{
+						flagType=1;
+					}
+				}
+
+		}while(flagType==0);
+		break;
+	}
+	return retorno;
+}
+
+int calculateTotalAveragePassenger(Passenger* list, int len){
+
+	int retorno=-1;
+	int contadorPromedio=0;
+	int contadorPromedioSupera=0;
+	float promedio=0;
+	float total=0;
+	int i;
+
+	for(i=0;i<len;i++){
+		if(list[i].isEmpty!=0){
+			total+=list[i].price;
+			contadorPromedio++;
+		}
+	}
+
+	promedio=total/contadorPromedio;
+
+	for(i=0;i<len;i++){
+		if(list[i].isEmpty!=0 && list[i].price>promedio){
+			contadorPromedioSupera++;
+		}
+	}
+	if(promedio!=0 && total!=0){
+		printf("El total es: %2.f\nEl promedio es: %2.f\nLa cantidad de pasajeros que superan el promedio es: %d",total, promedio, contadorPromedioSupera);
+		retorno=0;
+	}
+	else{
+		printf("no hay pasajeros registrados para calcular");
+	}
+	return retorno;
+}

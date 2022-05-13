@@ -127,4 +127,15 @@ int sortPassengersByCode(Passenger* list, int len, int order);
  * @param i es a partir de donde se puede cargar un pasajero
  */
 void altaForzada(Passenger* list, int len , int i);
+
+/**
+ * modifica lo que el usuario necesita
+ * @param list passenger*
+ * @param len limite
+ * @param opcion que atributo quiere modificar el usuario
+ */
+int ModifyPassenger(Passenger* list, int len , int opcion , int id);
+
+int calculateTotalAveragePassenger(Passenger* list, int len);
+
 #endif /* ARRAYPASSENGERS_H_ */
