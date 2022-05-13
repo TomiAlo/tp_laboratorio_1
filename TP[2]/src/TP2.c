@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "arrayPassengers.h"
 
-#define PASAJEROS 3
+#define PASAJEROS 2000
 
 int main(void) {
 	setbuf(stdout, NULL);
@@ -22,11 +22,9 @@ int main(void) {
 	int validacionBusca;
 	int validacionRemover;
 	int validacionOrdenar;
-	int validacionOrdenarDos;
 	int opcionOrdenar;
 	int opcionInformar;
 	int opcionModificar;
-	int opcionMostrarUno;
 	int opcionMostrar;
 	int validacionModificar;
 	int id;
@@ -46,6 +44,9 @@ int main(void) {
 				case 1:
 						validacionAgregado=addPassenger(arrayPasajeros, PASAJEROS, arrayPasajeros[i].id, arrayPasajeros[i].name,arrayPasajeros[i].lastName,
 							arrayPasajeros[i].price, arrayPasajeros[i].typePassenger, arrayPasajeros[i].flycode, arrayPasajeros[i].statusFlight);
+						if(validacionAgregado==0){
+							printf("Pasajero agregado correctamente");
+						}
 						if(i<PASAJEROS){
 							i++;
 						}
@@ -58,12 +59,18 @@ int main(void) {
 							utn_getNumero(&opcionModificar,"\n1-Nombre. \n2-Apellido. \n3-Precio. \n4-Tipo de pasajero. \n5-Codigo de vuelo \n", 0, 5);
 							validacionModificar=ModifyPassenger(arrayPasajeros, PASAJEROS, opcionModificar, id);
 						}
+						if(validacionModificar==0){
+							printf("Pasajero modificado correctamente");
+						}
 						break;
 
 
 				case 3:
-						utn_getNumero(&id,"Que pasajeros quiere eliminar: ", 0, PASAJEROS);
+						utn_getNumero(&id,"Que pasajero quiere eliminar: ", 0, PASAJEROS);
 						validacionRemover=removePassenger(arrayPasajeros, PASAJEROS, id);
+						if(validacionRemover==0){
+							printf("Pasajero eliminado correctamente");
+						}
 						break;
 
 				case 4:
@@ -80,8 +87,11 @@ int main(void) {
 
 						case 3:
 							utn_getNumero(&opcionOrdenar,"0(ascendete) o 1(descendente): ", 0, 1);
-							validacionOrdenarDos=sortPassengersByCode(arrayPasajeros, PASAJEROS, opcionOrdenar);
+							validacionOrdenar=sortPassengersByCode(arrayPasajeros, PASAJEROS, opcionOrdenar);
 							break;
+						}
+						if(validacionOrdenar==0){
+							printf("Accion ejecutada correctamente");
 						}
 						break;
 

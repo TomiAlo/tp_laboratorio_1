@@ -325,6 +325,7 @@ lastName[],float price,int typePassenger, char flycode[], int statusFlight)
 		}while(validacionEstado!=0);
 
 		list[id].isEmpty=1;
+		retorno=0;
 	}
 	else if(list==NULL || len <= 0 || list[id].isEmpty == 1){
 		printf("no hay espacio disponible");
@@ -384,7 +385,6 @@ int removePassenger(Passenger* list, int len, int id){
 
 		if(list[id].isEmpty==1){
 			list[id].isEmpty=0;
-			printf("Eliminado correctamente");
 			retorno=0;
 		}
 		else if(list[id].isEmpty==0){
@@ -697,6 +697,7 @@ int ModifyPassenger(Passenger* list, int len , int opcion, int id){
 
 		}while(flagType==0);
 		break;
+	retorno=0;
 	}
 	return retorno;
 }
