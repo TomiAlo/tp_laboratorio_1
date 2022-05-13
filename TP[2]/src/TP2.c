@@ -46,7 +46,9 @@ int main(void) {
 				case 1:
 						validacionAgregado=addPassenger(arrayPasajeros, PASAJEROS, arrayPasajeros[i].id, arrayPasajeros[i].name,arrayPasajeros[i].lastName,
 							arrayPasajeros[i].price, arrayPasajeros[i].typePassenger, arrayPasajeros[i].flycode, arrayPasajeros[i].statusFlight);
-						i++;
+						if(i<PASAJEROS){
+							i++;
+						}
 					break;
 
 				case 2:
